@@ -9,11 +9,11 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     protected $fillable = [
-        'main_picture', 'text','item_image','user_id',
+        'main_picture', 'text','item_image','user_id','title'
     ];
-    public function users()
+    public function User()
     {
-        return $this->hasMany('App\Users');
+        return $this->belongsTo('App\Users');
     }
    
     public function getMainPictureAttribute($main_picture){

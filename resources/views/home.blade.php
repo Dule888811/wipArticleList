@@ -13,12 +13,20 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                   
                     <a href="{{route('articles.create')}}">Create new article</a>
-                    <a href="{{route('articles.list')}}">List articles</a>
+                <div></div>
+                    <a href="{{route('articles.list')}}">All</a>
+                        <div></div>
+                        <a href="{{route('article')}}">Choose one article</a>
+                        <div></div>
+                        <a href="{{route('article.users')}}">Choose one article by author</a>
                 </div>
             </div>
+
+  
         </div>
     </div>
 </div>
+
 @endsection

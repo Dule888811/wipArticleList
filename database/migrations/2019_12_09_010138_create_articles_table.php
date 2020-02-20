@@ -17,6 +17,7 @@ class CreateArticlesTable extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
+            $table->string('title')->unique();
             $table->string('main_picture');
             $table->string('item_image')->nullable();
             $table->string('text');

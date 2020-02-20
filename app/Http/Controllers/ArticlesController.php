@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
+use App\User;
 use Illuminate\Http\Request;
 
 class ArticlesController extends Controller
@@ -23,10 +25,19 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        return view('home');
+       $articles = Article::all();
+
+        return view('articles.index')->with(['articles' => $articles]);
     }
 
     public function create(){
         return view('articles.create');
     }
+    public function user()
+    {
+        $users = User::all();
+        return view('articles.user')->with(['users' => $users]);
+    }
+
+  
 }

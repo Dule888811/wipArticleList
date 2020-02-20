@@ -6,87 +6,80 @@
             {{$error}}<br>
         @endforeach
     @endif
-    
-    <form  method="post" action="{{route('article.store')}}"  id="upload_form" enctype="multipart/form-data">
-        {{csrf_field()}}
-       
-      
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <div class="form-input">
-        <label for="text">First name</label>
-        <input type="text" name="text" id="{{Auth::id()}}">
-        </div>
+    <div id="storeAricle">
+        <form  method="post" action="{{route('article.store')}}" id="upload_form" enctype="multipart/form-data">
+            {{csrf_field()}}
 
-        <div class="form-input">
-            <label for="main_picture">main picture</label>
-            <input type="file" name="main_picture">
-        </div>
+            <select name="user_id" id="user_id">
+                <option value={{\Auth::id()}}>{{\Auth::id()}}</option>
+            </select>
 
-        <div class="form-input">  
-        <label for="user_id">User id</label>      
-        <select name="user_id">
-        <option value={{\Auth::id()}}>{{\Auth::id()}}</option>
-        </select>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-        </div>
-        <div class="wrapper">
-        </div>
-            <div class="form-input items" >
-                <label for="item_image[]">item image</label>
-                <input type="file"  name="item_image[]">
+            <div class="form-input">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title">
             </div>
-            <div class="form-input items" >
-                <label for="item_image[]">item image</label>
-                <input type="file"  name="item_image[]">
-            </div>
-            <div class="form-input items" >
-                <label for="item_image[]">item image</label>
-                <input type="file"  name="item_image[]">
-            </div>
-            <div class="form-input items" >
-                <label for="item_image[]">item image</label>
-                <input type="file"  name="item_image[]">
-            </div>
-            <div class="form-input items" >
-                <label for="item_image[]">item image</label>
-                <input type="file"  name="item_image[]">
-            </div>
-        
-      
-        <div class="form-input">
-            <button type="submit" name="upload" id="upload" value="submit" >Submit</button>
-        </div>
-    </form>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
 
+            <div class="form-input">
+            <h2>Your blog</h2>
+                <textarea name="blog"  rows="4" cols="50"  id="{{\Auth::id()}}">Enter text here...</textarea>
+            </div>
 
-           
+            <div class="form-input">
+                <label for="main_picture">main picture</label>
+                <input type="file" name="main_picture">
+            </div>
 
+            <div class="wrapper" id="divImages">
 
-            $.ajaxSetup({
-                 headers: {
-         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                         }
-                    });
-            $("#upload_form").submit(function (event) {
-            event.preventDefault();
-            $.ajax({
-            type: 'POST',
-            url: "{{route('article.store')}}",
-            data: new FormData($this),
-            dataType: "JSON",
-            contentType : application/json,
-           // cache :false,
-           // processData: false,
-            success: function (data) {
-               alert(data.success);
-            }
+                <div class="form-input items">
+                    <label for="item_image[]">item image</label>
+                    <input type="file"  name="item_image[]">
+                </div>
+                <div class="form-input items" >
+                    <label for="item_image[]">item image</label>
+                    <input type="file"  name="item_image[]">
+                </div>
+                <div class="form-input items" >
+                    <label for="item_image[]">item image</label>
+                    <input type="file"  name="item_image[]">
+                </div>
+                <div class="form-input items" >
+                    <label for="item_image[]">item image</label>
+                    <input type="file"  name="item_image[]">
+                </div>
+                <div class="form-input items">
+                    <label for="item_image[]">item image</label>
+                    <input type="file"  name="item_image[]">
+                </div>
+
+            </div>
+            <a href="" id="photos">
+                <i class="fa fa-plus"></i>
+            </a>
+
+            <div class="form-input">
+                <button type="submit" name="upload" id="upload" value="submit" >Submit</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        $(document).ready(function () {
+            var photos;
+            var divImages;
+            divImages = $('#divImages');
+            photos =  $('#photos');
+            photos.click().click(function (event)
+                {
+                    event.preventDefault();
+                    divImages.append(' <div class="form-input-items">' +
+                        '<label for="item_image[]">item image</label>' +
+                        '<input type="file"  name="item_image[]">' +
+                        '</div>');
+
+                });
+
         });
-            });
-        });
-        $(document).ready(function() {
-      $(".btn-success").click(function(){ 
-         alert("hello");
-      });
     </script>
 @stop

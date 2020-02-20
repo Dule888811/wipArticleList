@@ -16,18 +16,19 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-/*Route::get('/loginUser', 'Auth\LoginController@loginUser')->name('loginUser');
-Route::post('/login', 'Auth\LoginController@login')->name('login');*/
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/articles/create',[
     'uses' => 'ArticlesController@create',
     'as' => 'articles.create'
 ]);
-/*Route::post('/article/create',[
-    'uses' => 'ArticleController@create',
-    'as' => 'article.create'
-]); 
-Route::post('/article/created',[
-    'uses' => 'API/ArticleController@store',
-    'as' => 'article.store'
-]); */
+Route::get('article',[
+    'uses' => 'ArticlesController@index',
+    'as' => 'article'
+]);
+Route::get('article/users',[
+    'uses' => 'ArticlesController@user',
+    'as' => 'article.users'
+]);
+
+
+
