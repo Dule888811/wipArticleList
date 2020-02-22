@@ -23,12 +23,12 @@
 
             <div class="form-input">
             <h2>Your blog</h2>
-                <textarea name="blog"  rows="4" cols="50"  id="{{\Auth::id()}}">Enter text here...</textarea>
+                <textarea name="blog" id="blog"  rows="4" cols="50"  id="{{\Auth::id()}}">Enter text here...</textarea>
             </div>
 
             <div class="form-input">
                 <label for="main_picture">main picture</label>
-                <input type="file" name="main_picture">
+                <input type="file" name="main_picture" id="main_picture">
             </div>
 
             <div class="wrapper" id="divImages">
@@ -63,23 +63,7 @@
                 <button type="submit" name="upload" id="upload" value="submit" >Submit</button>
             </div>
         </form>
+
     </div>
-    <script>
-        $(document).ready(function () {
-            var photos;
-            var divImages;
-            divImages = $('#divImages');
-            photos =  $('#photos');
-            photos.click().click(function (event)
-                {
-                    event.preventDefault();
-                    divImages.append(' <div class="form-input-items">' +
-                        '<label for="item_image[]">item image</label>' +
-                        '<input type="file"  name="item_image[]">' +
-                        '</div>');
 
-                });
-
-        });
-    </script>
 @stop
